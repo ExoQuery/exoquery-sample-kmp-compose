@@ -80,14 +80,14 @@ kotlin {
 
 configurations.all {
   exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
+  // Exclude the duplicate annotations to resolve the conflict
+  exclude(group = "com.sschr15.annotations", module = "jb-annotations-kmp-jvm")
 }
 
 fun MinimalExternalModuleDependency.simpleString() =
     this.let { "${it.module}:${it.versionConstraint.requiredVersion}" }
 
 android {
-    compileSdk = 34 // for example
-
     namespace = "com.example.project"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
@@ -96,7 +96,6 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        minSdk = 30
         applicationId = "com.example.project"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
