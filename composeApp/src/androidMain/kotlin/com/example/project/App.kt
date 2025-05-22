@@ -7,6 +7,6 @@ import org.koin.compose.koinInject
 @Composable
 fun App() {
   val sdk = koinInject<SpaceXSDK>()
-  val viewModel = remember { CommonRocketLaunchViewModel(sdk) }
+  val viewModel = remember(sdk) { CommonRocketLaunchViewModel(sdk) }
   CommonApp(viewModel = viewModel)
 }
