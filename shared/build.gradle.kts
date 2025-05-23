@@ -45,24 +45,18 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.exoquery.runner.core)
-            implementation(libs.exoquery.engine.get().simpleString()) {
-                // This interferes with org.jetbrains:annotations in the in the android modules
-                exclude("com.sschr15.annotations","jb-annotations-kmp")
-            }
+            implementation(libs.exoquery.engine)
         }
         androidMain {
             dependencies {
                 implementation(libs.ktor.client.android)
                 implementation(libs.android.driver)
-                // not sure why putting this here blows things up
-                implementation(libs.jetbrains.annotations)
             }
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.native.driver)
             implementation(libs.exoquery.runner.native)
-            implementation(libs.jetbrains.annotations.kmp)
         }
     }
 }

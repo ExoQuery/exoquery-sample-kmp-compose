@@ -13,5 +13,9 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 * `/shared` is for the code that will be shared between all targets in the project.
   The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
 
+Other notes:
+- The `linkerOpts.add("-lsqlite3")` option in composeApp/shared may not actually be propagated to the iOS project
+  managed by Xcode. If you see errors in the iOS app missing SQLite, symbols, go to Xcode project "Build Phases"
+  and add `libsqlite3.tbd` and `libz.tbd` to the "Link Binary With Libraries" section.
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…

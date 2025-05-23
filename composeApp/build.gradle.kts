@@ -73,15 +73,12 @@ kotlin {
         }
         iosMain.dependencies {
             implementation(libs.exoquery.runner.native)
-            implementation(libs.jetbrains.annotations.kmp)
         }
     }
 }
 
 configurations.all {
   exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
-  // Exclude the duplicate annotations to resolve the conflict
-  exclude(group = "com.sschr15.annotations", module = "jb-annotations-kmp-jvm")
 }
 
 fun MinimalExternalModuleDependency.simpleString() =
